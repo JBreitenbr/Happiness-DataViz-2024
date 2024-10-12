@@ -9,9 +9,9 @@ export default function App() {
       <><Router>
         <Navbar/>
         <Routes>
-           <Route path="/" element={<Choropleth/>}/>
-          <Route path="/bars" element={<Barcharts/>}/>
-          <Route path="/scatter" element={<Scatter/>}/>
+           <Route path="/Happiness-DataViz-2024" element={<Choropleth/>}/>
+          <Route path="/Happiness-DataViz-2024/bars" element={<Barcharts/>}/>
+          <Route path="/Happiness-DataViz-2024/scatter" element={<Scatter/>}/>
           </Routes>
         </Router>
     </>

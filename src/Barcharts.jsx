@@ -1,9 +1,17 @@
 import * as d3 from 'd3';
 import {useState, useEffect, useRef} from 'react';
+import {stackDict} from './stackDict';
+import {happyDict} from './happyDict';
 import {facDict} from './facDict';
+import {cnts} from './cnts';
 const Barcharts = () => {
-  const [country,setCountry]=useState ("Mali");
-let ger = facDict[country];
+  const [country,setCountry]=useState ("Canada");
+let ger = stackDict[country];
+let txt = happyDict[country];
+let fac = facDict[country];
+let dims=["GDP per capita:","Social support:", "Healthy life expectancy:","Freedom to make life choices:","Generosity:","Perceptions of corruption:","Dystopia residual:"]
+  let toolTip=d3.select("body").append("div").attr("id","tooltip");
+
  let barCols=["#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494"];
 const svgRef = useRef();
    useEffect(()=>{
@@ -34,18 +42,14 @@ let canvas=d3.select(svgRef.current).append("svg").attr("width", width + margin.
 for(let i=0;i<10;i++)
   for(let j=0;j<7;j++)
 {
-canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[j][i][1]-ger[j][i][0])).attr("fill",barCols[j]);
+canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[j][i][1]-ger[j][i][0])).attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+"<br>"+fac[j][i]).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");});
 }
-/*
 for(let i=0;i<10;i++){
-canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[1][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[1][i][1]-ger[1][i][0])).attr("fill",barCols[1]);
-}
-     for(let i=0;i<10;i++){
-     canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[2][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[2][i][1]-ger[2][i][0])).attr("fill",barCols[2]);
-     }*/
+  canvas.append("text").attr("x",xScale(2015+i)+30).attr("y",yScale(txt[i])+15).style("font","10px arial ").text(txt[i]);
+} 
  },[]);
   
-  return (<div className="wrapper"><h2>Timeline</h2><svg id="canvas_bar" ref={svgRef} /></div>);
+  return (<div className="wrapper"><svg id="canvas_bar" ref={svgRef} /></div>);
 
   }
 

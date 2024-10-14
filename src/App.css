@@ -22,7 +22,7 @@
   top:0;
   left:0;
 }
-.wrapper {
+body,.wrapper {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,25 +1,33 @@
 import * as d3 from 'd3';
 import {useState, useEffect, useRef} from 'react';
-import {stackDict} from './stackDict';
-import {happyDict} from './happyDict';
-import {facDict} from './facDict';
-import {cnts} from './cnts';
+import {stackDict} from './utils/stackDict';
+import {happyDict} from './utils/happyDict';
+import {facDict} from './utils/facDict';
+import {countries} from './utils/countries';
 const Barcharts = () => {
   const [country,setCountry]=useState ("Canada");
+const handleChange = (event) => {
+setCountry(event.target.value);
+};
 let ger = stackDict[country];
 let txt = happyDict[country];
 let fac = facDict[country];
 let dims=["GDP per capita:","Social support:", "Healthy life expectancy:","Freedom to make life choices:","Generosity:","Perceptions of corruption:","Dystopia residual:"]
+  d3.select("#canvas_bar").remove();
+
+let canvas=d3.select("body").append("svg")
+.attr("id","canvas_bar");
   let toolTip=d3.select("body").append("div").attr("id","tooltip");
 
  let barCols=["#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494"];
 const svgRef = useRef();
-   useEffect(()=>{
+function showCountry(country){
 // set the dimensions and margins of the graph
 let margin = {top: 20, right: 30, bottom: 20, left: 30},
   width = 360 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom, height2=height+20;
-let canvas=d3.select(svgRef.current).append("svg").attr("width", width + margin.left + margin.right)
+//let canvas=d3.select(svgRef.current)
+canvas.append("svg").attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
 
 // Add X axis
@@ -47,9 +55,10 @@ canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+
 for(let i=0;i<10;i++){
   canvas.append("text").attr("x",xScale(2015+i)+30).attr("y",yScale(txt[i])+15).style("font","10px arial ").text(txt[i]);
 } 
- },[]);
+ };
+  showCountry(country);
   
-  return (<div className="wrapper"><svg id="canvas_bar" ref={svgRef} /></div>);
+  return (<div className="wrapper"><select value={country} onChange={handleChange}>{countries.map(item=><option key={item}>{item}</option>)}</select></div>);
 
   }
 

@@ -3,7 +3,7 @@ const Navbar = () => {
   return (
     <ul className="flex border-b">
   <li className="-mb-px mr-1">
-    <Link to="/Happiness-DataViz-2024" className="bg-slate-100 inline-block py-2 px-6 text-teal-500 hover:text-teal-800 font-semibold">Choropleth</Link>
+    <Link to="/Happiness-DataViz-2024" className="bg-slate-100 inline-block py-2 px-6 text-teal-500 hover:text-teal-800 font-semibold">Ranking</Link>
   </li>
   <li className="mr-1">
     <Link to="/Happiness-DataViz-2024/bars" className="bg-slate-100 inline-block py-2 px-6 text-teal-500 hover:text-teal-800 font-semibold">Barcharts</Link>

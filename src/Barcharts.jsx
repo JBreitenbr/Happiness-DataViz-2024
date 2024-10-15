@@ -14,7 +14,7 @@ let txt = happyDict[country];
 let fac = facDict[country];
 let dims=["GDP per capita:","Social support:", "Healthy life expectancy:","Freedom to make life choices:","Generosity:","Perceptions of corruption:","Dystopia residual:"]
   d3.select("#canvas_bar").remove();
-  d3.select("#canvas_scatter").remove();
+d3.select("#canvas_rank").remove();  d3.select("#canvas_scatter").remove();
 
 let canvas=d3.select("body").append("svg")
 .attr("id","canvas_bar");

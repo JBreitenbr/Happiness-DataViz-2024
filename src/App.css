@@ -4,11 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-#canvas_bar, #canvas_scatter {
+#canvas_rank, #canvas_bar, #canvas_scatter {
   width: 358px;
   height: 520px;
   background-color:papayawhip;  
 }
+#canvas_rank {width:380px;height:570px;}
 #tooltip {
   position: absolute;
   padding: 5px;

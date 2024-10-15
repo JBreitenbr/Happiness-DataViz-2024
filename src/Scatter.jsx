@@ -23,9 +23,9 @@ if(reg=="All Regions"){
 else{
 dat=dimsDict[dim].filter((item)=>item[2]==reg);
 }
-//document.write(dat[0]); d3.select("#canvas_scatter").remove()
+ d3.select("#canvas_scatter").remove()
 d3.select("#canvas_bar").remove();
-
+d3.select("#canvas_rank").remove();
 
 let canvas=d3.select("body").append("svg")
 .attr("id","canvas_scatter");

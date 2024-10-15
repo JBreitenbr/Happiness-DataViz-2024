@@ -1,0 +1,1 @@
+export let rangeDict= {'gdp_per_capita': [-2, 56], 'social_support': [0, 41], 'healthy_life_expectancy': [0, 26], 'freedom_to_make_life_choices': [0, 26], 'generosity': [0, 15], 'perceptions_of_corruption': [0, 14]}

@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#canvas_bar {
+#canvas_bar, #canvas_scatter {
   width: 358px;
   height: 520px;
   background-color:papayawhip;  

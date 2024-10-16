@@ -6,6 +6,12 @@ import {facDict} from './utils/facDict';
 import {countries} from './utils/countries';
 const Barcharts = () => {
   const [country,setCountry]=useState ("Canada");
+let cntDict={};
+for(let i=0;i<countries.length;i++){
+  cntDict[countries[i]]=countries[i];
+}
+cntDict["Hong Kong S.A.R. of China"] = "Hong Kong";
+cntDict["Taiwan Province of China"] = "Taiwan";
 const handleChange = (event) => {
 setCountry(event.target.value);
 };
@@ -13,6 +19,8 @@ let ger = stackDict[country];
 let txt = happyDict[country];
 let fac = facDict[country];
 let dims=["GDP per capita:","Social support:", "Healthy life expectancy:","Freedom to make life choices:","Generosity:","Perceptions of corruption:","Dystopia residual:"]
+
+  
   d3.select("#canvas_bar").remove();
 d3.select("#canvas_rank").remove();  d3.select("#canvas_scatter").remove();
 
@@ -59,7 +67,7 @@ for(let i=0;i<10;i++){
  };
   showCountry(country);
   
-  return (<div className="wrapper"><select value={country} onChange={handleChange}>{countries.map(item=><option key={item}>{item}</option>)}</select></div>);
+  return (<div className="wrapper"><select value={country} onChange={handleChange}>{countries.map(item=><option key={item} value={item}>{cntDict[item]}</option>)}</select></div>);
 
   }
 

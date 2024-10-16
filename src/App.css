@@ -9,7 +9,7 @@
   height: 520px;
   background-color:papayawhip;  
 }
-#canvas_rank {width:380px;height:630px;}
+#canvas_rank {width:380px;height:570px;}
 #tooltip {
   position: absolute;
   padding: 5px;
@@ -28,4 +28,5 @@ body,.wrapper {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: papayawhip;
 }

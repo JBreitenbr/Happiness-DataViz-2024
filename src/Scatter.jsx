@@ -5,16 +5,18 @@ import {rangeDict} from './utils/rangeDict';
 
 const Scatter = () => {
   
-    let [dim,setDim]=useState("gdp_per_capita")
+    let [dim,setDim]=useState("perceptions_of_corruption");
 let [reg,setReg]=useState("All Regions");
  const handleChange1 = (event) => {
 setDim(event.target.value);
 }; 
 const handleChange2 = (event) => {
   setReg(event.target.value);
-};
+};let regDict={"Western Europe":"#8dd3c7","North America and ANZ":"#ffffb3","Latin America and Caribbean":"#bebada","Middle East and North Africa":"#fb8072","South Asia":"#80b1d3","East Asia":"#fdb462","Southeast Asia":"#b3de69","Central and Eastern Europe":"#fccde5","Commonwealth of Independent States":"#d9d9d9","Sub-Saharan Africa":"#bc80bd"}; 
  let dimBij={"gdp_per_capita":"GDP per capita","social_support":"Social support", "healthy_life_expectancy":"Healthy life expectancy","freedom_to_make_life_choices":"Freedom to make life choices","generosity":"Generosity","perceptions_of_corruption":"Perceptions of corruption"} 
+let dims=["gdp_per_capita","social_support", "healthy_life_expectancy","freedom_to_make_life_choices","generosity","perceptions_of_corruption"];
 let regions=["All Regions","Western Europe","North America and ANZ","Latin America and Caribbean","Middle East and North Africa","South Asia","East Asia","Southeast Asia","Central and Eastern Europe","Commonwealth of Independent States"]; 
+function showScatter(dim,reg){
 let dat;
 
 if(reg=="All Regions"){
@@ -40,11 +42,11 @@ let yAxis=d3.axisLeft(yScale);
   canvas.append('g').style("font", `${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`).call(yAxis).attr('transform','translate('+pad+',0)');
 canvas.append('g').style("font", `${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`).call(xAxis).attr('transform','translate(0,'+(h-pad)+')');
 
-canvas.append("circle").attr("cx",xScale(dat[0][4])).attr("cy",yScale(dat[0][3])).attr("r",10).style("fill","red");
-canvas.selectAll('circle').data(dat).enter().append('circle').attr('cx',(item)=>{return xScale(item[4])}).attr('cy',(item)=>{ return  h-pad-yScale(item[3])}).attr('r',(item)=>(0.0000025*h)*Math.sqrt(item[1])).attr("fill","blue");
+//canvas.append("circle").attr("cx",xScale(dat[0][4])).attr("cy",yScale(dat[0][3])).attr("r",10).style("fill","red");
+canvas.selectAll('circle').data(dat).enter().append('circle').attr('cx',(item)=>{return xScale(item[4])}).attr('cy',(item)=>{ return  yScale(item[3])}).attr('r',(item)=>(0.0000025*h)*Math.sqrt(item[1])).attr("fill",(item)=>{return regDict[item[2]]});}
+  showScatter(dim,reg);
 
-  return (
-    <div className="bg-gray-100">Happy Scatter</div>)
+  return (<div className="wrapper"><select value={dim} onChange={handleChange1}>{dims.map(item=><option key={item} value={item}>{dimBij[item]}</option>)}</select><select value={reg} onChange={handleChange2}>{regions.map(item=><option key={item} value={item}>{item}</option>)}</select></div>);
 }
 
 export default Scatter;

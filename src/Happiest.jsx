@@ -14,7 +14,7 @@ setYear(event.target.value);
 let years=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
 function showYear(year){
 let l=rankDict[year].length;
-let med=Math.floor(l/2);
+let med=Math.ceil(l/2);
 let cnts=rankDict[year].slice(0,med).map(d=>d[0]);
 let canvas=d3.select("body").append("svg")
 .attr("id","canvas_rank");

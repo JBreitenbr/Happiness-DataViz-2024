@@ -18,7 +18,7 @@ let med=Math.ceil(l/2);
 let b=l%2;
 let years=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
 let moods=["happy","unhappy"];
-let moodDict={"happy":"Happiest Countries","unhappy":"Unhappiest Countries"};
+let moodDict={"happy":"Happiest Countries (i.e. not below Median)","unhappy":"Unhappiest Countries (i.e. below Median)"}
 function showRanks(year,mood){
 let cnts,lst,lend;
 if(mood=="happy"){

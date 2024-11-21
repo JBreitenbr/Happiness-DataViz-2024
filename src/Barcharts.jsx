@@ -59,7 +59,7 @@ canvas.append("svg").attr("width", width + margin.left + margin.right)
 for(let i=0;i<10;i++)
   for(let j=0;j<7;j++)
 {
-canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[j][i][1]-ger[j][i][0])).attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+"<br>"+fac[j][i]).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});
+canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[j][i][1]-ger[j][i][0])).attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+" "+fac[j][i]+"<br>"+"Year: "+parseInt(i+2015)).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});
 }
 for(let i=0;i<10;i++){
   canvas.append("text").attr("x",xScale(2015+i)+30).attr("y",yScale(txt[i])+15).style("font","10px arial ").text(txt[i]);
@@ -67,7 +67,7 @@ for(let i=0;i<10;i++){
  };
   showCountry(country);
   
-  return (<div className="wrapper"><select value={country} onChange={handleChange}>{countries.map(item=><option key={item} value={item}>{cntDict[item]}</option>)}</select></div>);
+  return (<div><h1 className="text-center text-teal-900 mt-6 text-xl" ><strong>Happiness by Dimensions Over Time</strong></h1><div className="wrapper text-teal-900 my-6 p-2" style={{backgroundColor:"papayawhip"}}><select value={country} onChange={handleChange} style={{backgroundColor:"papayawhip",border:"1px solid teal"}}>{countries.map(item=><option key={item} value={item} className="p-4" style={{backgroundColor:"papayawhip"}} >{cntDict[item]}</option>)}</select></div></div>);
 
   }
 

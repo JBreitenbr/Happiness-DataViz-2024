@@ -67,7 +67,7 @@ for(let i=0;i<10;i++){
  };
   showCountry(country);
   
-  return (<div><h1 className="text-center text-teal-900 mt-6 text-xl" ><strong>Happiness by Dimensions Over Time</strong></h1><div className="wrapper text-teal-900 my-6 p-2" style={{backgroundColor:"papayawhip"}}><select value={country} onChange={handleChange} style={{backgroundColor:"papayawhip",border:"1px solid teal"}}>{countries.map(item=><option key={item} value={item} className="p-4" style={{backgroundColor:"papayawhip"}} >{cntDict[item]}</option>)}</select></div></div>);
+  return (<div><h1 className="text-center text-bold mt-4 text-xl" >Happiness by Dimensions Over Time</h1><div className="wrapper my-2 p-2"><select value={country} onChange={handleChange} style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{countries.map(item=><option key={item} value={item} className="p-4">{cntDict[item]}</option>)}</select></div></div>);
 
   }
 

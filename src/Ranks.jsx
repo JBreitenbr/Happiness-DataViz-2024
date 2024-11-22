@@ -47,7 +47,7 @@ canvas.append('text').attr('x',xScale(0)+12).attr('y',yScale(rankDict[year][i][0
  }
 }
   showRanks(year,mood);
-  return (<div className="wrapper"><select value={year} onChange={handleYear}>{years.map(item=><option key={item} value={item}>{item}</option>)}</select><select value={mood} onChange={handleMood}>{moods.map(item=><option key={item} value={item}>{moodDict[item]}</option>)}</select></div>)
+  return (<div className="wrapper"><h1 className="text-center text-bold text-xl mt-4">Ranked Happiness Score by Year</h1><select value={year} onChange={handleYear} className="mt-2" style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{years.map(item=><option key={item} value={item}>{item}</option>)}</select><select value={mood} onChange={handleMood} className="my-2" style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{moods.map(item=><option key={item} value={item}>{moodDict[item]}</option>)}</select></div>)
 }
 
 export default Ranks;

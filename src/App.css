@@ -7,7 +7,7 @@
 #canvas_rank, #canvas_bar, #canvas_scatter {
   width: 358px;
   height: 520px;
-  background-color:papayawhip;  
+  background-color:#fff7eb;  
 }
 #canvas_rank {width:380px;height:570px;}
 #tooltip {
@@ -28,5 +28,6 @@ body,.wrapper {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: papayawhip;
+  background-color: #fff7eb;
+  font-family: 'Montserrat', sans-serif;
 }

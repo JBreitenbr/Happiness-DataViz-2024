@@ -43,10 +43,10 @@ let yAxis=d3.axisLeft(yScale);
 canvas.append('g').style("font", `${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`).call(xAxis).attr('transform','translate(0,'+(h-pad)+')');
 
 //canvas.append("circle").attr("cx",xScale(dat[0][4])).attr("cy",yScale(dat[0][3])).attr("r",10).style("fill","red");
-canvas.selectAll('circle').data(dat).enter().append('circle').attr('cx',(item)=>{return xScale(item[4])}).attr('cy',(item)=>{ return  yScale(item[3])}).attr('r',(item)=>(0.0000025*h)*Math.sqrt(item[1])).attr("fill",(item)=>{return regDict[item[2]]}).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Country: "+item[0]+"<br> Population: "+item[1]+"<br>"+dimBij[dim]+": "+item[4]+"% of Happiness Score"+"<br> Happiness Score: "+item[3]).style("left",event.pageX+10+"px").style( "top",event.pageY-20+"px")}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});}
+canvas.selectAll('circle').data(dat).enter().append('circle').attr('cx',(item)=>{return xScale(item[4])}).attr('cy',(item)=>{ return  yScale(item[3])}).attr('r',(item)=>(0.0000025*h)*Math.sqrt(item[1])).attr("fill",(item)=>{return regDict[item[2]]}).style("stroke","grey").on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Country: "+item[0]+"<br> Population: "+item[1]+"<br>"+dimBij[dim]+": "+item[4]+"% of Happiness Score ("+item[3]+")").style("left",event.pageX+10+"px").style( "top",event.pageY-20+"px")}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});}
   showScatter(dim,reg);
 
-  return (<div className="wrapper"><select value={dim} onChange={handleChange1}>{dims.map(item=><option key={item} value={item}>{dimBij[item]}</option>)}</select><select value={reg} onChange={handleChange2}>{regions.map(item=><option key={item} value={item}>{item}</option>)}</select></div>);
+  return (<div className="wrapper"><h1 className="text-center text-bold mt-4 text-xl" >Happiness Dimensions (in % of Score) vs. Happiness Score</h1><select value={dim} onChange={handleChange1} style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}} className="mt-2">{dims.map(item=><option key={item} value={item}>{dimBij[item]}</option>)}</select><select value={reg} onChange={handleChange2} style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}} className="my-2">{regions.map(item=><option key={item} value={item}>{item}</option>)}</select></div>);
 }
 
 export default Scatter;

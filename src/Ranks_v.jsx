@@ -30,13 +30,13 @@ let canvas=d3.select("body").append("svg")
 let w=+d3.select("#canvas_rank").style("width").slice(0,-2);
 let h=+d3.select("#canvas_rank").style("height").slice(0,-2); 
 let pad=(1/7)*w;
-let xScale1=d3.scaleLinear().domain([0,8]).range([pad,w/2]);
+let xScale1=d3.scaleLinear().domain([0,8]).range([pad,w/2-pad]);
 let xScale2=d3.scaleLinear().domain([0,8]).range([w/2+pad,w-pad]);                     
 let yScale1=d3.scaleBand().domain(cnts1).range([0,h-0.5*pad]).padding(0.15);
 let yScale2=d3.scaleBand().domain(cnts2).range([0,h-0.5*pad]).padding(0.15);
 let yAxis1=d3.axisLeft(yScale1);
 let yAxis2=d3.axisLeft(yScale2);                  canvas.append('g').call(yAxis1).attr('transform','translate('+pad+',0)').style("font",`${(9/550)*h}`+"px montserrat");
-                    canvas.append('g').call(yAxis2).attr('transform','translate('+0.642*w+',0)').style("font",`${(7/380)*w}`+"px montserrat");
+                    canvas.append('g').call(yAxis2).attr('transform','translate('+0.642*w+',0)').style("font",`${(9/550)*w}`+"px montserrat");
 canvas.selectAll('rect1').data(rankDict[year].slice(0,med)).enter().append('rect').attr('x',xScale1(0)).attr('y',d=>yScale1(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale1(d[2])).attr('height',yScale1.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");
 canvas.selectAll('rect2').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale2(0)).attr('y',d=>yScale2(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale2(d[2])).attr('height',yScale2.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");
   return (<div>Ranked</div>)

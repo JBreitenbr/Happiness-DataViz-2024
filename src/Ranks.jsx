@@ -22,7 +22,7 @@ let moodDict={"happy":"Happiest Countries (i.e. not below Median)","unhappy":"Un
 function showRanks(year,mood){
 let cnts,lst,lend;
 if(mood=="happy"){
-cnts=rankDict[year].slice(0,med).map(d=>d[0]);
+cnts=rankDict[year].slice(0,med).map(d=>d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"));
 lst=0;lend=med;
 }
 if(mood=="unhappy"){
@@ -34,20 +34,20 @@ let canvas=d3.select("body").append("svg")
 let w=+d3.select("#canvas_rank").style("width").slice(0,-2);
 let h=+d3.select("#canvas_rank").style("height").slice(0,-2); 
 let pad=(8.5/35)*w;
-let xScale=d3.scaleLinear().domain([0,8]).range([pad,w-pad]);
-  let xAxis=d3.axisBottom(xScale);
-let yScale=d3.scaleBand().domain(cnts).range([0,h-pad]).padding(0.15)
+let xScale=d3.scaleLinear().domain([0,8]).range([pad,w-1.2*pad]);
+  //let xAxis=d3.axisBottom(xScale);
+let yScale=d3.scaleBand().domain(cnts).range([0,h-0.5*pad]).padding(0.15)
 let yAxis=d3.axisLeft(yScale);
 canvas.append('g').call(yAxis).attr('transform','translate('+pad+',0)').style("font", "7px montserrat");
-  if(mood=="happy"){canvas.selectAll('rect').data(rankDict[year].slice(0,med)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0])).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]])};
- if(mood=="unhappy"){canvas.selectAll('rect').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0])).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]])};
+  if(mood=="happy"){canvas.selectAll('rect').data(rankDict[year].slice(0,med)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");};
+ if(mood=="unhappy"){canvas.selectAll('rect').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0])).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px")};
 for(let i=lst; i<lend;i++){
-canvas.append('text').attr('x',xScale(rankDict[year][i][2])+30).attr('y',yScale(rankDict[year][i][0])+yScale.bandwidth()/2+3).text(rankDict[year][i][2]).style("font","8px arial").style("text-anchor","middle").style("fill","#333");
-canvas.append('text').attr('x',xScale(0)+12).attr('y',yScale(rankDict[year][i][0])+yScale.bandwidth()/2+3).text(i+1).style("font","8px arial").style("text-anchor","end").style("fill","#333");
+canvas.append('text').attr('x',xScale(rankDict[year][i][2])+65).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(rankDict[year][i][2]).style("font","8px arial").style("fill","#333");
+canvas.append('text').attr('x',xScale(0)+15).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(i+1).style("font","8px arial").style("text-anchor","end").style("fill","#333");
  }
 }
   showRanks(year,mood);
-  return (<div className="wrapper"><h1 className="text-center text-bold text-xl mt-4">Ranked Happiness Score by Year</h1><select value={year} onChange={handleYear} className="mt-2" style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{years.map(item=><option key={item} value={item}>{item}</option>)}</select><select value={mood} onChange={handleMood} className="my-2" style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{moods.map(item=><option key={item} value={item}>{moodDict[item]}</option>)}</select></div>)
+  return (<div className="wrapper"><h1 className="text-center text-bold text-xl mt-4">Ranked Happiness Score by Year</h1><select value={year} onChange={handleYear} className="mt-2" style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{years.map(item=><option key={item} value={item}>{item}</option>)}</select><select value={mood} onChange={handleMood} className="mt-2 mb-4" style={{backgroundColor:"#fcfcfc",border:"2px solid #21234a",borderRadius:"5px"}}>{moods.map(item=><option key={item} value={item}>{moodDict[item]}</option>)}</select></div>)
 }
 
 export default Ranks;

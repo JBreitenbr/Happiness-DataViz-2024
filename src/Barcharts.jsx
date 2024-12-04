@@ -59,7 +59,7 @@ canvas.append("svg").attr("width", width + margin.left + margin.right)
 for(let i=0;i<10;i++)
   for(let j=0;j<7;j++)
 {
-canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[j][i][1]-ger[j][i][0])).attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+" "+fac[j][i]+"<br>"+"Year: "+parseInt(i+2015)).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});
+canvas.append("rect").attr("x",xScale(2015+i)+30).attr("y",yScale(ger[j][i][1])+20).attr("width",xScale.bandwidth).attr("height",yScale2(ger[j][i][1]-ger[j][i][0])).style("stroke","grey").attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+" "+fac[j][i]+"<br>"+"Year: "+parseInt(i+2015)).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});
 }
 for(let i=0;i<10;i++){
   canvas.append("text").attr("x",xScale(2015+i)+30).attr("y",yScale(txt[i])+15).style("font","10px arial ").text(txt[i]);

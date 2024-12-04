@@ -10,6 +10,13 @@
   background-color:#fff7eb;  
 }
 #canvas_rank {width:380px;height:570px;}
+
+@media screen and (min-width:767px) and (max-aspect-ratio: 0.9) {
+#canvas_rank {
+  height: 650px;
+  width: 520px;
+}
+}
 #tooltip {
   position: absolute;
   padding: 5px;

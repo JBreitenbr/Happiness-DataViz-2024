@@ -39,6 +39,6 @@ let yAxis2=d3.axisLeft(yScale2);                  canvas.append('g').call(yAxis1
                     canvas.append('g').call(yAxis2).attr('transform','translate('+0.642*w+',0)').style("font",`${(9/550)*h}`+"px montserrat");
 canvas.selectAll('rect1').data(rankDict[year].slice(0,med)).enter().append('rect').attr('x',xScale1(0)).attr('y',d=>yScale1(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale1(d[2])).attr('height',yScale1.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");
 canvas.selectAll('rect2').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale2(0)).attr('y',d=>yScale2(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale2(d[2])).attr('height',yScale2.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");
-  return (<div>Ranked</div>)
+  return (<div><div>{moodDict["happy"]}</div><div>{moodDict["unhappy"]}</div></div>)
 }
 export default Ranks_v;

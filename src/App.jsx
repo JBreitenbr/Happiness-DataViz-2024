@@ -15,7 +15,7 @@ let [width, setWidth]=useState(window.innerWidth);
       <><Router>
         <Navbar/>
         <Routes>
-          {width<1200?<Route path="/Happiness-DataViz-2024" element={<Ranks_v/>}/>:<Route path="/Happiness-DataViz-2024" element={<Helper/>}/>}
+          {height<width?<Route path="/Happiness-DataViz-2024" element={<Ranks_v/>}/>:<Route path="/Happiness-DataViz-2024" element={<Ranks/>}/>}
           <Route path="/Happiness-DataViz-2024/bars" element={<Barcharts/>}/>
           <Route path="/Happiness-DataViz-2024/scatter" element={<Scatter/>}/>
           </Routes>

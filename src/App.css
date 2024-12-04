@@ -19,6 +19,13 @@ border: 1px solid #21234a;}
   border: 1px solid darkgreen;
 }
 }
+@media screen and (min-width:767px) and (min-aspect-ratio: 1.1) {
+#canvas_rank {
+  height: 550px;
+  width: 720px;
+  border: 1px solid darkred;
+}
+}
 #tooltip {
   position: absolute;
   padding: 5px;

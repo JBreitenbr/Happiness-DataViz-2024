@@ -35,12 +35,11 @@ let w=+d3.select("#canvas_rank").style("width").slice(0,-2);
 let h=+d3.select("#canvas_rank").style("height").slice(0,-2); 
 let pad=(8.5/35)*w;
 let xScale=d3.scaleLinear().domain([0,8]).range([pad,w-1.2*pad]);
-  //let xAxis=d3.axisBottom(xScale);
 let yScale=d3.scaleBand().domain(cnts).range([0,h-0.5*pad]).padding(0.15)
 let yAxis=d3.axisLeft(yScale);
 canvas.append('g').call(yAxis).attr('transform','translate('+pad+',0)').style("font", "7px montserrat");
   if(mood=="happy"){canvas.selectAll('rect').data(rankDict[year].slice(0,med)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");};
- if(mood=="unhappy"){canvas.selectAll('rect').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0])).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px")};
+ if(mood=="unhappy"){canvas.selectAll('rect').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale(d[2])).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px")};
 for(let i=lst; i<lend;i++){
 canvas.append('text').attr('x',xScale(rankDict[year][i][2])+65).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(rankDict[year][i][2]).style("font","8px arial").style("fill","#333");
 canvas.append('text').attr('x',xScale(0)+15).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(i+1).style("font","8px arial").style("text-anchor","end").style("fill","#333");

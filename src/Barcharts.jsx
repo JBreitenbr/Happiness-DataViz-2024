@@ -19,7 +19,8 @@ let sta = stackDict[country];
 let txt = happyDict[country];
 let fac = facDict[country];
 let dims=["GDP per capita:","Social support:", "Healthy life expectancy:","Freedom to make life choices:","Generosity:","Perceptions of corruption:","Dystopia residual:"]
-
+let dims2=dims;
+dims2[3]="Free life choices:";
   
   d3.select("#canvas_bar").remove();
 d3.select("#canvas_rank").remove();  d3.select("#canvas_scatter").remove();
@@ -32,29 +33,36 @@ let canvas=d3.select("body").append("svg")
 function showCountry(country){
 let w=+d3.select("#canvas_bar").style("width").slice(0,-2);
 let h=+d3.select("#canvas_bar").style("height").slice(0,-2); 
-let pad=(1/12)*w;
+let pad=(1/8)*w;
   let xScale = d3.scaleBand()
       .domain([2015,2016,2017,2018,2019,2020,2021,2022,2023,2024])
       .range([pad, w-pad])
       .padding([0.2])
   canvas.append("g")
-    .attr("transform",`translate(0,${h-pad})`)
+    .attr("transform",`translate(0,${h-3.75*pad})`)
     .call(d3.axisBottom(xScale).tickSizeOuter(0));
   let yScale = d3.scaleLinear()
     .domain([0, 8])
-    .range([ h-pad , pad ]);
+    .range([ h-3*pad , pad ]);
   let yScale2=d3.scaleLinear()
     .domain([0, 8])
-    .range([0,h-2*pad])
-  canvas.append("g").attr("transform", `translate(${pad},0)`)
+    .range([0,h-4*pad])
+  canvas.append("g").attr("transform", `translate(${pad},${-0.75*pad})`)
     .call(d3.axisLeft(yScale));
 for(let i=0;i<10;i++)
   for(let j=0;j<7;j++)
 {
-canvas.append("rect").attr("x",xScale(2015+i)).attr("y",yScale(sta[j][i][1])).attr("width",xScale.bandwidth).attr("height",yScale2(sta[j][i][1]-sta[j][i][0])).style("stroke","grey").attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+" "+fac[j][i]+"<br>"+"Year: "+parseInt(i+2015)).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});
+canvas.append("rect").attr("x",xScale(2015+i)).attr("y",yScale(sta[j][i][1])-0.75*pad).attr("width",xScale.bandwidth).attr("height",yScale2(sta[j][i][1]-sta[j][i][0])).style("stroke","grey").attr("fill",barCols[j]).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html(dims[j]+" "+fac[j][i]+"<br>"+"Year: "+parseInt(i+2015)).style("left",event.pageX+10+"px").style("top",event.pageY-20+"px");}).on("mouseout",(event,item)=>{return toolTip.style("visibility","hidden")});
 }
+let bw=xScale.bandwidth();
+for(let i=0;i<3;i++) {canvas.append("rect").attr("x",xScale(2015)-0.25*bw+i*4.3*bw).attr("y",h-3*pad+0.5*bw).attr("width",0.5*bw).attr("height",0.5*bw).style("stroke","grey").attr("fill",barCols[i]);
+  canvas.append("text").attr("x",xScale(2015)+0.5*bw+i*4.3*bw).attr("y",h-2.8*pad+0.5*bw).text(dims2[i].slice(0,-1)).style("font","10px arial").style("text-anchor","start")}
+for(let i=3;i<6;i++) {canvas.append("rect").attr("x",xScale(2015)-0.25*bw+(i-3)*4.3*bw).attr("y",h-3*pad+1.5*bw).attr("width",0.5*bw).attr("height",0.5*bw).style("stroke","grey").attr("fill",barCols[i]);
+  canvas.append("text").attr("x",xScale(2015)+0.5*bw+(i-3)*4.3*bw).attr("y",h-2.8*pad+1.5*bw).text(dims2[i].slice(0,-1)).style("font","10px arial").style("text-anchor","start")}
+  canvas.append("rect").attr("x",xScale(2015)-0.25*bw).attr("y",h-3*pad+2.5*bw).attr("width",0.5*bw).attr("height",0.5*bw).style("stroke","grey").attr("fill",barCols[6]);
+canvas.append("text").attr("x",xScale(2015)+0.5*bw).attr("y",h-3*pad+3*bw).text(dims2[6].slice(0,-1)).style("font","10px arial").style("text-anchor","start");
 for(let i=0;i<10;i++){
-  canvas.append("text").attr("x",xScale(2015+i)).attr("y",yScale(txt[i])-5).style("font","10px arial ").text(txt[i]);
+  canvas.append("text").attr("x",xScale(2015+i)).attr("y",yScale(txt[i])-5-0.75*pad).style("font","10px arial ").text(txt[i]);
 } 
  };
   showCountry(country);

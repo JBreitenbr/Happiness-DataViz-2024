@@ -7,7 +7,6 @@ import Barcharts from './Barcharts'
 import Scatter from './Scatter'
 import Ranks from './Ranks'
 import Ranks_v from './Ranks_v'
-import Helper from './Helper'
 export default function App() { 
 let [width, setWidth]=useState(window.innerWidth);
   let [height, setHeight]=useState(window.innerHeight);

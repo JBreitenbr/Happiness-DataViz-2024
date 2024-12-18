@@ -45,7 +45,7 @@ let pad=(1/8)*w;
   let yScale2=d3.scaleLinear()
     .domain([0, 8])
     .range([0,h-4*pad])
-  canvas.append("g").style("font",`${1/30*w}+px montserrat`).attr("transform", `translate(${pad},${-0.75*pad})`)
+  canvas.append("g").style("font",`${1/36*w}px montserrat`).attr("transform", `translate(${pad},${-0.75*pad})`)
     .call(d3.axisLeft(yScale));
 for(let i=0;i<10;i++)
   for(let j=0;j<7;j++)

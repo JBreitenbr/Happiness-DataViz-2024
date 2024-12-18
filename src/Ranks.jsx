@@ -41,8 +41,8 @@ canvas.append('g').call(yAxis).attr('transform','translate('+pad+',0)').style("f
   if(mood=="happy"){canvas.selectAll('rect').data(rankDict[year].slice(0,med)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale(d[2])-xScale(0)).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px");};
  if(mood=="unhappy"){canvas.selectAll('rect').data(rankDict[year].slice().reverse().slice(0,med-b)).enter().append('rect').attr('x',xScale(0)).attr('y',d=>yScale(d[0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))).attr('width',d=>xScale(d[2])-xScale(0)).attr('height',yScale.bandwidth()).style("fill",d=>regDict[d[1]]).style("stroke","grey").style("stroke-width","0.5px")};
 for(let i=lst; i<lend;i++){
-canvas.append('text').attr('x',xScale(rankDict[year][i][2])+5).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(rankDict[year][i][2]).style("font","8px arial").style("fill","#333");
-canvas.append('text').attr('x',xScale(0)+15).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(i+1).style("font","8px arial").style("text-anchor","end").style("fill","#333");
+canvas.append('text').attr('x',xScale(rankDict[year][i][2])+5).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(rankDict[year][i][2]).style("font",`${1/42*w}px montserrat`).style("fill","#333");
+canvas.append('text').attr('x',xScale(0)+15).attr('y',yScale(rankDict[year][i][0].replace("Bosnia and Herzegovina","Bosnia a. Herzegovina"))+yScale.bandwidth()/2+3).text(i+1).style("font",`${1/42*w}px montserrat`).style("text-anchor","end").style("fill","#333");
  }
 }
   showRanks(year,mood);

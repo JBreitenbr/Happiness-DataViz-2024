@@ -1,0 +1,1 @@
+export let regDict={"Western Europe":"#8dd3c7","North America and ANZ":"#ffffb3","Latin America and Caribbean":"#bebada","Middle East and North Africa":"#fb8072","South Asia":"#80b1d3","East Asia":"#fdb462","Southeast Asia":"#b3de69","Central and Eastern Europe":"#fccde5","Commonwealth of Independent States":"#d9d9d9","Sub-Saharan Africa":"#bc80bd"}; 

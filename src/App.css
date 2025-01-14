@@ -15,19 +15,16 @@
 #canvas_rank,#canvas_bar,#canvas_scatter {
   height: 650px;
   width: 520px;
-  border: 1px solid darkgreen;
 }
 }
 @media screen and (min-width:767px) and (min-aspect-ratio: 1.1) {
 #canvas_rank {
   height: 550px;
   width: 850px;
-  border: 4px solid darkred;
 }
   #canvas_bar,#canvas_scatter {
   height: 550px;
   width: 520px;
-  border: 1px solid darkred;
   }
 }
 
